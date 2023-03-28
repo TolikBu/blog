@@ -1,0 +1,2 @@
+npm i --save-dev classnames cuid react-redux react-viewport-list redux redux-thunk @babel/core @babel/eslint-parser @babel/plugin-syntax-flow @babel/plugin-transform-react-jsx @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint eslint-config-airbnb eslint-config-airbnb-typescript eslint-config-prettier eslint-import-resolver-typescript eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-prettier eslint-plugin-react eslint-plugin-react-hooks husky lint-staged prettier
+    
