@@ -16,7 +16,3 @@ const getArticles = async (): Promise<{ articles: ITask[] }> => {
   const data = await request<{ articles: ITask[] }>(`${BASE_URL}/articles`);
   console.log(data);
 };
-
-export const api = {
-  getArticles,
-};
