@@ -1,14 +1,85 @@
-import { FC } from "react";
-import classes from "./App.module.sass";
-import TaskList from "../TaskList/TaskList";
-import Header from "../Header/Header";
+import styled from "styled-components";
+import { BrowserRouter as Router } from "react-router-dom";
+import { Route, Switch } from "react-router";
+import { useEffect, useState } from "react";
 
-const App: FC = () => {
+import Header from "../Header/Header";
+import ArticlesPage from "../../components/ArticlesPage/ArticlesPage";
+import ArticleViewPage from "../../components/ArticleViewPage/ArticleViewPage";
+import SignUpPage from "../../components/SignUpPage/SignUpPage";
+import SignInPage from "../../components/SignInPage/SignInPage";
+import { useAppDispatch } from "../../hooks/hooks";
+import { loadUser } from "../../services/helpers";
+import { logout, setUser } from "../../store/reducers/authSlice";
+import EditProfilePage from "../../components/EditProfilePage/EditProfilePage";
+import { useGetCurrentUserMutation } from "../../services/api";
+import PrivateRoute from "../router/PrivateRoute";
+import CreateNewArticlePage from "../../pages/CreateNewArticlePage/CreateNewArticlePage";
+import NotFoundPage from "../../pages/NotFoundPage/NotFoundPage";
+import EditArticlePage from "../../pages/EditArticlePage/EditArticlePage";
+
+const Container = styled.div`
+  max-width: 938px;
+  width: 90%;
+  margin: 0 auto;
+  padding-top: 26px;
+  padding-bottom: 17px;
+`;
+
+const App = () => {
+  const dispatch = useAppDispatch();
+  const [getCurrentUser] = useGetCurrentUserMutation();
+  const [isLoggingIn, setIsLoggingIn] = useState(true);
+
+  const loadSavedUser = async () => {
+    const token = loadUser();
+
+    if (!token) {
+      dispatch(logout());
+      setIsLoggingIn(false);
+      return;
+    }
+
+    const res = await getCurrentUser({ token });
+    if ("data" in res) {
+      dispatch(setUser({ user: res.data.user }));
+    }
+
+    setIsLoggingIn(false);
+    console.log(res);
+  };
+
+  useEffect(() => {
+    loadSavedUser();
+  }, []);
+
+  if (isLoggingIn) return null;
+
   return (
-    <div className={classes.container}>
-      <Header />
-      <TaskList />
-    </div>
+    <Router>
+      <Header isLoggingIn={isLoggingIn} />
+      <main>
+        <Container>
+          <Switch>
+            <Route path="/" component={ArticlesPage} exact />
+            <Route path="/articles" component={ArticlesPage} exact />
+            <Route path="/articles/:slug" component={ArticleViewPage} exact />
+            <PrivateRoute
+              path="/articles/:slug/edit"
+              component={EditArticlePage}
+            />
+            <PrivateRoute
+              path="/new-article"
+              component={CreateNewArticlePage}
+            />
+            <Route path="/sign-up" component={SignUpPage} />
+            <Route path="/sign-in" component={SignInPage} />
+            <PrivateRoute path="/profile" component={EditProfilePage} />
+            <Route path="*" component={NotFoundPage} />
+          </Switch>
+        </Container>
+      </main>
+    </Router>
   );
 };
 
