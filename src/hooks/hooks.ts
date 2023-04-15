@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/named
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import { RootState, AppDispatch } from "../store/store";
 import { logout } from "../store/reducers/authSlice";

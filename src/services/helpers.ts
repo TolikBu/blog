@@ -1,4 +1,4 @@
-import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
+import { FetchBaseQueryError } from "@reduxjs/toolkit/dist/query";
 import { IUser } from "../types/IUser";
 
 interface WrongDataError {

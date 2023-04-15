@@ -1,46 +1,29 @@
 import { FC } from "react";
-import { Link } from "react-router-dom";
-import classes from "./ArticleItem.module.sass";
+import styled from "styled-components";
 
-import avatar from "../../assets/avatar.png";
-import like from "../../assets/like.svg";
+import { IArticle } from "../../types/IArticle";
+import ArticlePreview from "../ArticlePreview/ArticlePreview";
 
-const Task: FC = () => {
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  border-radius: 4px;
+  background-color: #fff;
+  filter: drop-shadow(0px 4px 12px rgba(0, 0, 0, 0.15));
+  min-height: 140px;
+`;
+
+export interface IArticleItemProps {
+  data: IArticle;
+}
+
+const ArticleItem: FC<IArticleItemProps> = ({ data }) => {
   return (
-    <div className={classes["task-container"]}>
-      <div className={classes["task-header"]}>
-        <div className={classes["task-top"]}>
-          <h2 className={classes["task-title"]}>
-            <Link to="/article">Some article title</Link>
-          </h2>
-          <div className={classes["task-like"]}>
-            <img src={like} alt="" className={classes["task-like__image"]} />
-            <div className={classes["like-count"]}>12</div>
-          </div>
-          <div className={classes["task-title__tag"]}>Tag1</div>
-        </div>
-        <div className={classes["task-user"]}>
-          <div className={classes["task-user__info"]}>
-            <div className={classes["task-user__name"]}>Tolik Bu</div>
-            <div className={classes["task-user__date"]}>June 15, 2023</div>
-          </div>
-          <div className={classes["task-like__avatar"]}>
-            <img
-              src={avatar}
-              alt=""
-              className={classes["task-like__avatar-image"]}
-            />
-          </div>
-        </div>
-      </div>
-      <p className={classes["task-text"]}>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-        commodo consequat.
-      </p>
-    </div>
+    <Wrapper>
+      <ArticlePreview data={data} />
+    </Wrapper>
   );
 };
 
-export default Task;
+export default ArticleItem;

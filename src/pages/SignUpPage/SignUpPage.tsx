@@ -183,9 +183,9 @@ const SignUpPage = () => {
             const isError = Boolean(error);
             const options = item.registerOptions;
 
-            let validate: Validate<string | boolean> | undefined;
+            let validate: Validate<string | boolean, FormValues> | undefined;
             if (options.validate) {
-              validate = (value) => {
+              validate = (value: string | boolean) => {
                 return options.validate(value, getValues());
               };
             }

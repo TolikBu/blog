@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { useHistory, useParams } from "react-router";
 import { Alert, Spin } from "antd";
 import styled from "styled-components";
-import MDReactComponent from "markdown-react-js";
 import ArticlePreview from "../../components/ArticlePreview/ArticlePreview";
 import {
   useDeleteArticleMutation,
@@ -91,7 +90,7 @@ const ArticleViewPage = () => {
                 />
               )}
             </PreviewWrap>
-            <MDReactComponent text={articleData.article.body} />
+            <div>{articleData.article.body}</div>
           </>
         )}
       </Article>

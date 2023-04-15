@@ -4,14 +4,14 @@ import { Route, Switch } from "react-router";
 import { useEffect, useState } from "react";
 
 import Header from "../Header/Header";
-import ArticlesPage from "../../components/ArticlesPage/ArticlesPage";
-import ArticleViewPage from "../../components/ArticleViewPage/ArticleViewPage";
-import SignUpPage from "../../components/SignUpPage/SignUpPage";
-import SignInPage from "../../components/SignInPage/SignInPage";
+import ArticlesPage from "../../pages/ArticlesPage/ArticlesPage";
+import ArticleViewPage from "../../pages/ArticleViewPage/ArticleViewPage";
+import SignUpPage from "../../pages/SignUpPage/SignUpPage";
+import SignInPage from "../../pages/SignInPage/SignInPage";
 import { useAppDispatch } from "../../hooks/hooks";
 import { loadUser } from "../../services/helpers";
 import { logout, setUser } from "../../store/reducers/authSlice";
-import EditProfilePage from "../../components/EditProfilePage/EditProfilePage";
+import EditProfilePage from "../../pages/EditProfilePage/EditProfilePage";
 import { useGetCurrentUserMutation } from "../../services/api";
 import PrivateRoute from "../router/PrivateRoute";
 import CreateNewArticlePage from "../../pages/CreateNewArticlePage/CreateNewArticlePage";
@@ -46,7 +46,6 @@ const App = () => {
     }
 
     setIsLoggingIn(false);
-    console.log(res);
   };
 
   useEffect(() => {

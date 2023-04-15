@@ -1,18 +1,40 @@
 import { FC } from "react";
-// import classes from "./TaskList.module.sass";
 
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import styled from "styled-components";
+import { IArticle } from "../../types/IArticle";
+import ArticleItem from "../ArtticleItem/ArticleItem";
 
-import Task from "../ArtticleItem/ArticleItem";
-import TaskItem from "../ArticlePreview/ArticlePreview";
+const Wrapper = styled.ul`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-stretch;
+  margin-bottom: 0;
+`;
 
-const TaskList: FC = () => {
+const Item = styled.li`
+  width: 100%;
+  margin-bottom: 26px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+`;
+
+export interface ArticlesListProps {
+  articles?: IArticle[];
+}
+
+const ArticlesList: FC<ArticlesListProps> = ({ articles }) => {
   return (
-    <Router>
-      <Route path="/" component={Task} />
-      <Route path="/article" component={TaskItem} />
-    </Router>
+    <Wrapper>
+      {articles &&
+        articles.map((item) => (
+          <Item key={item.slug}>
+            <ArticleItem data={item} />
+          </Item>
+        ))}
+    </Wrapper>
   );
 };
 
-export default TaskList;
+export default ArticlesList;

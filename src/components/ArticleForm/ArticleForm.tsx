@@ -135,6 +135,7 @@ const ArticleForm: FC<IArticleFormProps> = ({
   errorMessage,
   successMessage,
   initialValues,
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   onSubmit = () => {},
 }) => {
   const {
