@@ -13,7 +13,7 @@ import { loadUser } from "../../services/helpers";
 import { logout, setUser } from "../../store/reducers/authSlice";
 import EditProfilePage from "../../pages/EditProfilePage/EditProfilePage";
 import { useGetCurrentUserMutation } from "../../services/api";
-import PrivateRoute from "../router/PrivateRoute";
+import PrivateRoute from "../../hoc/PrivateRoute";
 import CreateNewArticlePage from "../../pages/CreateNewArticlePage/CreateNewArticlePage";
 import NotFoundPage from "../../pages/NotFoundPage/NotFoundPage";
 import EditArticlePage from "../../pages/EditArticlePage/EditArticlePage";

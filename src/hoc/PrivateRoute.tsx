@@ -1,7 +1,8 @@
 import { FC } from "react";
 
+// eslint-disable-next-line import/named
 import { Redirect, Route, RouteProps } from "react-router";
-import { useAuth } from "../../hooks/hooks";
+import { useAuth } from "../hooks/hooks";
 
 const PrivateRoute: FC<RouteProps> = (props) => {
   const { user } = useAuth();
